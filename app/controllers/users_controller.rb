@@ -2,9 +2,12 @@ class UsersController < ApplicationController
 
     def new
        @user = User.new
+        2.times { @user.children.build }
+
     end
 
     def create
+        binding.pry
         @user = User.new(user_params)
         if @user.save
             flash[:success] = "Successfully created!"
@@ -36,6 +39,10 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:username, :email)
+        binding.pry
+        params.require(:user).permit(:username, :email, children_attributes: [
+            :name,
+            :nick_name
+        ])
     end
 end

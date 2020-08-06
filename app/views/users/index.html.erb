@@ -7,6 +7,15 @@
 <ul>
     <% @users.each do |user| %>
         <li><%= user.username %> - <%= user.email %> </li>
+        <ul>Children:
+        <% if user.children.empty? %>
+            <li>None</li>
+            <% else %>
+            <% user.children.each do |child| %>
+                <li><%= child.name%> - <%= child.nick_name%></li>
+            <% end %>
+        <% end%>
+        </ul>
     <% end %>
 </ul>
 
