@@ -1,0 +1,23 @@
+<h2>Add a new user!</h2>
+
+<% if @user.errors.any? %>
+    <h2>
+        <%= pluralize(@user.errors.count, "error") %> prevented this user from being saved.
+    <h2>
+    <ul id="error_explanation">
+        <% @user.errors.full_messages.each do |msg| %>
+            <li style="color: red"><%= msg %></li>
+        <% end %>
+    </ul>
+<% end %>
+
+
+<%= form_for @user do |f| %>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+    <br>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+    <br>
+    <%= f.submit %>
+<% end %>
